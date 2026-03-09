@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 217 33% 17%;
+    --card-foreground: 210 40% 98%;
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 40 60% 58%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 210 50% 24%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 22%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 25 55% 52%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 40 60% 58%;
+    --radius: 0.25rem;
+    
+    /* Custom UAE Theme Colors */
+    --uae-gold: #D4A056;
+    --uae-gold-light: #E8C880;
+    --uae-blue: #1E3A5F;
+    --uae-blue-dark: #0F172A;
+    --uae-sand: #C17B4E;
+    --uae-sand-light: #D4A574;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#0F172A] text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  
+  .font-hero {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply backdrop-blur-xl bg-[rgba(30,58,95,0.4)] border border-[rgba(212,160,86,0.2)];
+  }
+  
+  /* Gold Gradient Text */
+  .gold-gradient-text {
+    @apply bg-gradient-to-r from-[#D4A056] via-[#E8C880] to-[#D4A056] bg-clip-text text-transparent;
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+  
+  /* Section Container */
+  .section-container {
+    @apply w-full min-h-screen relative overflow-hidden;
+  }
+  
+  /* Blueprint Grid */
+  .blueprint-grid {
+    background-image: 
+      linear-gradient(rgba(212, 160, 86, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 160, 86, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Animated Border */
+  .animated-border {
+    position: relative;
+  }
+  
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, var(--uae-gold), transparent, var(--uae-gold));
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: borderRotate 4s linear infinite;
+  }
+  
+  /* Timeline Spine */
+  .timeline-spine {
+    @apply absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#D4A056] via-[#C17B4E] to-[#D4A056];
+    transform: translateX(-50%);
+  }
+  
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #0F172A;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #D4A056, #C17B4E);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #E8C880, #D4A056);
+  }
+  
+  /* Certificate Card */
+  .certificate-card {
+    @apply relative overflow-hidden rounded-lg transition-all duration-300;
+    background: linear-gradient(135deg, rgba(30, 58, 95, 0.6), rgba(15, 23, 42, 0.8));
+    border: 1px solid rgba(212, 160, 86, 0.2);
+  }
+  
+  .certificate-card:hover {
+    border-color: rgba(212, 160, 86, 0.5);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(212, 160, 86, 0.15);
+  }
+  
+  /* Tech Work Card */
+  .tech-work-card {
+    @apply relative overflow-hidden rounded-lg;
+    background: rgba(30, 58, 95, 0.3);
+    border: 1px solid rgba(212, 160, 86, 0.15);
+  }
+  
+  .tech-work-card:hover {
+    border-color: rgba(212, 160, 86, 0.4);
+  }
+  
+  .tech-work-card img {
+    transition: transform 0.5s ease;
+  }
+  
+  .tech-work-card:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@layer utilities {
+  /* 3D Transform Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  
+  /* Text Shadow for readability */
+  .text-shadow-gold {
+    text-shadow: 0 0 40px rgba(212, 160, 86, 0.5);
+  }
+  
+  /* Animation Delays */
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-400 { animation-delay: 400ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+}
+
+/* Keyframes */
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes borderRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 20px rgba(212, 160, 86, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(212, 160, 86, 0.6); }
+}
+
+@keyframes draw-line {
+  0% { stroke-dashoffset: 1000; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-in-up {
+  0% { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  0% { 
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 3s ease-in-out infinite;
+}
+
+.animate-draw-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-line 2s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.6s ease-out forwards;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -32,8 +32,8 @@ This project is designed to present a developer's work, experience, and contact 
 
 ## 📂 Project Structure
 
-Sarthak-s-Portfolio
-│
+```
+Sarthak-s-Portfolio/
 ├── index.html # Main webpage
 ├── style.css # Styling
 ├── script.js # JavaScript logic
@@ -43,7 +43,7 @@ Sarthak-s-Portfolio
 │
 ├── SarthakResume.pdf # Downloadable resume
 └── favicon files
-
+```
 ---
 
 ## ⚙️ Installation
@@ -55,13 +55,9 @@ git clone https://github.com/Anant-Dev925/Sarthak-s-Portfolio.git
 ```
 
 Navigate to the project folder:
-
 cd Sarthak-s-Portfolio
-
 Open the project:
-
 open index.html
-
 Or simply open index.html in your browser.
 
 ---
@@ -69,51 +65,22 @@ Or simply open index.html in your browser.
 ## 🎨 Customization
 
 You can easily customize the portfolio:
-
 Edit index.html to update content
-
 Replace images inside the images/ folder
-
 Modify styles in style.css
-
 Update animations in script.js
-
 Replace the resume file with your own
 
 ---
 
-## 📦 Deployment
 
-You can deploy this project using:
-
-GitHub Pages
-
-Vercel
-
-Netlify
-
-Hostinger
-
-Example (GitHub Pages):
-
-Go to repository Settings
-
-Open Pages
-
-Select main branch
-
-Your site will be live.
-
----
 
 ## 👨‍💻 Author
 
 Anant Dev Mishra
-
 Developer • Designer • Creator
 
 ## 📄 License
 
 ---
-
 This project is open-source and available under the MIT License.

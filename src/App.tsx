@@ -20,6 +20,7 @@ import {
   ChevronLeft,
   ChevronRight,
   FileSpreadsheet,
+  Plane,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ChatBot } from "@/components/ChatBot";
@@ -290,7 +291,7 @@ function ProfileSection() {
     <section
       ref={sectionRef}
       id="profile"
-      className="section-container bg-[#0F172A] blueprint-grid py-24 md:py-32"
+      className="section-container bg-[#0F172A] blueprint-grid py-12 md:py-32"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -607,7 +608,7 @@ function CertificatesSection() {
     <section
       ref={sectionRef}
       id="certificates"
-      className="section-container bg-[#0F172A] py-24 md:py-32 relative overflow-hidden"
+      className="section-container bg-[#0F172A] py-12 md:py-32 relative overflow-hidden"
     >
       {/* Lightbox */}
       <Lightbox
@@ -781,7 +782,7 @@ function ExpertiseSection() {
     <section
       ref={sectionRef}
       id="expertise"
-      className="section-container bg-gradient-to-b from-[#0F172A] to-[#1E293B] py-24 md:py-32 relative overflow-hidden"
+      className="section-container bg-gradient-to-b from-[#0F172A] to-[#1E293B] py-12 md:py-32 relative overflow-hidden"
     >
       {/* Background Watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -946,7 +947,7 @@ function TechnicalWorkSection() {
     <section
       ref={sectionRef}
       id="technical-work"
-      className="section-container bg-[#0F172A] py-24 md:py-32"
+      className="section-container bg-[#0F172A] py-12 md:py-32"
     >
       {/* Lightbox */}
       <Lightbox
@@ -1094,7 +1095,7 @@ function QuantitySurveyingSection() {
     <section
       ref={sectionRef}
       id="quantity-surveying"
-      className="section-container bg-gradient-to-b from-[#0F172A] to-[#1E293B] py-24 md:py-32 relative overflow-hidden"
+      className="section-container bg-gradient-to-b from-[#0F172A] to-[#1E293B] py-12 md:py-32 relative overflow-hidden"
     >
       {/* Lightbox */}
       <Lightbox
@@ -1323,7 +1324,7 @@ function ProjectsSection() {
     <section
       ref={sectionRef}
       id="projects"
-      className="section-container bg-gradient-to-b from-[#1E293B] to-[#0F172A] py-24 md:py-32"
+      className="section-container bg-gradient-to-b from-[#1E293B] to-[#0F172A] py-12 md:py-32"
     >
       {/* Lightbox for Project Images */}
       <Lightbox
@@ -1500,6 +1501,16 @@ function TimelineSection() {
 
   const experiences = [
     {
+      year: "2025 - Present",
+      title: "RAQ",
+      role: "Planning Consultant",
+      location: "Zayed International Airport, Remote",
+      description:
+        "Working as a freelance planning consultant supporting Abu Dhabi Airports projects, assisting with coordination, analysis, scheduling and remote planning.",
+      icon: Plane,
+      current: true,
+    },
+    {
       year: "2023 - Present",
       title: "SRM CONTRACTORS LIMITED",
       role: "Civil Engineer – Planning & Design",
@@ -1509,6 +1520,7 @@ function TimelineSection() {
       icon: Briefcase,
       current: true,
     },
+
     {
       year: "2024 - Present",
       title: "THAPAR UNIVERSITY",
@@ -1552,7 +1564,7 @@ function TimelineSection() {
     <section
       ref={sectionRef}
       id="experience"
-      className="section-container bg-[#0F172A] py-24 md:py-32 relative"
+      className="section-container bg-[#0F172A] py-12 md:py-32 relative"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -1675,7 +1687,7 @@ function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="section-container relative py-24 md:py-32 overflow-hidden"
+      className="section-container relative py-12 md:py-32 overflow-hidden"
     >
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#D4A056]/20 via-[#0F172A] to-[#0F172A]" />

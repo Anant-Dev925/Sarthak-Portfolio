@@ -1534,7 +1534,7 @@ function TimelineSection() {
     {
       year: "2023",
       title: "JAMMU PIGMENTS LTD",
-      role: "Construction Intern",
+      role: "Associate, Self Employed",
       location: "Kathua, Jammu & Kashmir",
       description:
         "Construction of industrial buildings in partnership with GM Projects. Manufacturing facility for Lead Metal, Lead Ingots, and Lead Alloys.",
@@ -1543,7 +1543,7 @@ function TimelineSection() {
     {
       year: "2022",
       title: "HASSAN ROAD CONSTRUCTION",
-      role: "Site Engineer Intern",
+      role: "Site Engineer",
       location: "Gandhi Nagar, Jammu",
       description:
         "EPC contract for Street Development including NW3 Apsara Road High Street Gole Market Area with adjoining roads.",

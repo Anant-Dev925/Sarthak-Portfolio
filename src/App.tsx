@@ -21,6 +21,7 @@ import {
   ChevronRight,
   FileSpreadsheet,
   Plane,
+  FileCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ChatBot } from "@/components/ChatBot";
@@ -473,12 +474,12 @@ function ProfileSection() {
             </p>
 
             <p className="text-lg text-[#94A3B8] leading-relaxed mb-6">
-              Currently pursuing{" "}
+              Completed{" "}
               <span className="text-[#D4A056]">
                 M.Tech in Highway Engineering
               </span>{" "}
-              (Working Professional Program) at Thapar University, while working
-              as Civil Engineer at SRM Contractors Limited.
+              (Working Professional Program) from Thapar University (2024-2026),
+              while working as Civil Engineer at SRM Contractors Limited.
             </p>
 
             <p className="text-lg text-[#94A3B8] leading-relaxed mb-12">
@@ -776,6 +777,13 @@ function ExpertiseSection() {
       description:
         "DPR/MPR preparation, BOQ reconciliation, IPC and stage payments, variation analysis.",
     },
+    {
+      icon: FileCheck,
+      title: "GOVERNMENT TENDER MANAGEMENT",
+      tools: "Tender Documentation, Bid Capacity Analysis, Cost Estimation",
+      description:
+        "Preparation of technical and financial tenders, bid capacity evaluation, and pre-tender cost estimation.",
+    },
   ];
 
   return (
@@ -809,7 +817,7 @@ function ExpertiseSection() {
         </div>
 
         {/* Expertise Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6">
           {expertise.map((item, index) => (
             <div
               key={item.title}
@@ -856,7 +864,6 @@ function ExpertiseSection() {
               "STAAD.Pro",
               "AutoCAD",
               "MS Excel",
-              "MS Project",
             ].map((skill, index) => (
               <span
                 key={skill}
@@ -1210,7 +1217,6 @@ function QuantitySurveyingSection() {
               "Billing",
               "Contract Management",
               "Excel",
-              "MS Project",
             ].map((skill, index) => (
               <span
                 key={skill}
@@ -1227,6 +1233,212 @@ function QuantitySurveyingSection() {
           className={`text-center text-sm text-[#64748B] mt-12 transition-all duration-1000 delay-500 ${isVisible ? "opacity-100" : "opacity-0"}`}
         >
           Click on any item to view details
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// Project Planning & Controls Section
+function PlanningSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const planningItems = [
+    {
+      title: "Nashik Work Programme",
+      description:
+        "Detailed project work programme for Nashik infrastructure project including activity sequencing, duration planning, and milestone tracking using Primavera P6 methodology.",
+      file: "/nashik-work-programme.pdf",
+      thumb: "/nashik-ss.png",
+      type: "pdf",
+      category: "schedule",
+    },
+    {
+      title: "Work Programme & Resource Mobilisation Plan",
+      description:
+        "Comprehensive work programme with resource mobilisation strategy covering manpower, equipment, and material deployment planning for timely project execution.",
+      file: "/work-programme-resource-mobilisation.pdf",
+      thumb: "/thumb-work-programme-resource.png",
+      type: "pdf",
+      category: "schedule",
+    },
+    {
+      title: "Work Programme — Feb 2026",
+      description:
+        "Project work programme update with revised scheduling, activity duration adjustments, and progress tracking for ongoing construction activities.",
+      file: "/work-programme-feb2026.pdf",
+      thumb: "/thumb-work-programme-feb2026.png",
+      type: "pdf",
+      category: "schedule",
+    },
+    {
+      title: "Project Planning & CPM Methodology Report",
+      description:
+        "Detailed report on Critical Path Method (CPM) methodology applied to project planning, covering network diagram development, float analysis, and critical path identification.",
+      file: "/project-planning-cpm.pdf",
+      thumb: "/thumb-project-planning-cpm.png",
+      type: "pdf",
+      category: "schedule",
+    },
+    {
+      title: "4m Height RRM Wall Design",
+      description:
+        "Structural design and analysis of a 4-meter-high Reinforced Rockfill Masonry (RRM) retaining wall, covering wall geometry, reinforcement detailing, stability checks, and material specifications.",
+      file: "/rrm-wall-4m-design.pdf",
+      thumb: "/thumb-rrm-wall-4m-design.png",
+      type: "pdf",
+      category: "design",
+    },
+    {
+      title: "RRM Wall Design — General",
+      description:
+        "General design documentation for Reinforced Rockfill Masonry (RRM) walls including design methodology, cross-section details, load calculations, and construction notes for site implementation.",
+      file: "/rrm-wall-design.pdf",
+      thumb: "/thumb-rrm-wall-design.png",
+      type: "pdf",
+      category: "design",
+    },
+  ];
+
+  const currentItem = planningItems[currentItemIndex];
+
+  const openItem = (index: number) => {
+    setCurrentItemIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const nextItem = () => {
+    setCurrentItemIndex((prev) => (prev + 1) % planningItems.length);
+  };
+
+  const prevItem = () => {
+    setCurrentItemIndex(
+      (prev) => (prev - 1 + planningItems.length) % planningItems.length,
+    );
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      id="planning"
+      className="section-container bg-[#1E293B] py-12 md:py-32 relative overflow-hidden"
+    >
+      {/* Lightbox */}
+      <Lightbox
+        images={planningItems.map((item) => ({
+          src: item.file,
+          title: item.title,
+          description: item.description,
+        }))}
+        currentIndex={currentItemIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        onNext={nextItem}
+        onPrev={prevItem}
+      />
+
+      {/* Background Watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <span className="text-[18vw] font-bold text-[#1E293B]/20 select-none">
+          PLAN
+        </span>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div
+          className={`text-center mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+        >
+          <span className="font-mono text-sm tracking-[0.3em] text-[#D4A056] mb-4 block">
+            PROJECT CONTROLS &amp; DESIGN
+          </span>
+          <h2 className="text-4xl md:text-5xl font-light text-white mb-4">
+            Planning, Scheduling{" "}
+            <span className="gold-gradient-text">&amp; Design</span>
+          </h2>
+          <p className="text-[#94A3B8] max-w-2xl mx-auto">
+            Primavera P6 work programmes, resource mobilisation plans, and
+            structural design documentation demonstrating integrated project
+            planning and design expertise
+          </p>
+        </div>
+
+        {/* Planning Cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {planningItems.map((item, index) => (
+            <div
+              key={item.title}
+              onClick={() => openItem(index)}
+              className={`certificate-card p-0 overflow-hidden cursor-pointer group transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+              style={{ animationDelay: `${index * 150}ms` }}
+            >
+              {/* Thumbnail */}
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={item.thumb}
+                  alt={item.title}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/50 to-transparent" />
+
+                {/* Zoom Icon */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-14 h-14 rounded-full bg-[#D4A056] flex items-center justify-center">
+                    <ZoomIn className="w-6 h-6 text-[#0F172A]" />
+                  </div>
+                </div>
+
+                {/* Type Badge */}
+                <div className="absolute top-4 right-4 px-3 py-1 bg-[#D4A056]/20 backdrop-blur-sm rounded-full">
+                  <span className="text-xs font-mono text-[#D4A056] uppercase">
+                    {item.type}
+                  </span>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-medium text-white mb-2 group-hover:gold-gradient-text transition-all">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#94A3B8]">{item.description}</p>
+              </div>
+
+              {/* Decorative Corner */}
+              <div className="absolute top-0 right-0 w-16 h-16 overflow-hidden">
+                <div className="absolute top-2 right-2 w-8 h-8 border-t-2 border-r-2 border-[#D4A056]/30" />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Click hint */}
+        <p
+          className={`text-center text-sm text-[#64748B] mt-8 transition-all duration-1000 delay-500 ${isVisible ? "opacity-100" : "opacity-0"}`}
+        >
+          Click on any item to view the full document
         </p>
       </div>
     </section>
@@ -1261,6 +1473,25 @@ function ProjectsSection() {
   const projects = [
     {
       id: 1,
+      title: "KETURAH RESORT",
+      location: "Dubai Healthcare City, UAE",
+      description:
+        "Preparation and approval of Bill of Quantities (BOQ) for RCC works and architectural works for Keturah Resort at Dubai Healthcare City. Coordinated with contractor CECEP and obtained approvals from Dubai Healthcare City (DHC) authority.",
+      image: "/project-keturah.jpg",
+      stats: [
+        { label: "Client", value: "Dubai Healthcare City" },
+        { label: "Contractor", value: "CECEP" },
+        { label: "Role", value: "Quantity Surveyor" },
+      ],
+      highlights: [
+        "BOQ preparation for RCC works",
+        "Architectural works quantification",
+        "DHC authority approval",
+        "Contractor coordination",
+      ],
+    },
+    {
+      id: 2,
       title: "ZAYED AIRPORT TERMINAL",
       location: "Abu Dhabi, UAE",
       description:
@@ -1279,7 +1510,7 @@ function ProjectsSection() {
       ],
     },
     {
-      id: 2,
+      id: 3,
       title: "HIGHWAY INFRASTRUCTURE",
       location: "Jammu, India",
       description:
@@ -1298,7 +1529,7 @@ function ProjectsSection() {
       ],
     },
     {
-      id: 3,
+      id: 4,
       title: "INDUSTRIAL COMPLEXES",
       location: "Kathua, India",
       description:
@@ -1522,14 +1753,14 @@ function TimelineSection() {
     },
 
     {
-      year: "2024 - Present",
+      year: "2024 - 2026",
       title: "THAPAR UNIVERSITY",
       role: "M.Tech Highway Engineering",
       location: "Working Professional Program",
       description:
-        "Pursuing Master of Technology in Highway Engineering through working professional program, focusing on advanced road design and infrastructure planning.",
+        "Completed Master of Technology in Highway Engineering (2024-2026) through working professional program, with focus on advanced road design and infrastructure planning.",
       icon: GraduationCap,
-      current: true,
+      current: false,
     },
     {
       year: "2023",
@@ -1758,15 +1989,7 @@ function ContactSection() {
         <div
           className={`text-center transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
         >
-          <div className="flex items-center justify-center gap-2 mb-6">
-            <CheckCircle className="w-5 h-5 text-green-500" />
-            <span className="text-[#94A3B8]">
-              Available for immediate joining in UAE
-            </span>
-          </div>
-          <p className="text-[#94A3B8] mb-6">
-            Based in India | Open to Relocate to UAE
-          </p>
+          <p className="text-[#94A3B8] mb-6">Based in India</p>
           <Button
             className="bg-[#D4A056] hover:bg-[#E8C880] text-[#0F172A] px-10 py-6 text-lg font-medium tracking-wider transition-all duration-300 hover:scale-105"
             onClick={() =>
@@ -1785,9 +2008,7 @@ function ContactSection() {
             <p className="text-sm text-[#64748B]">
               © 2026 Sarthak Kalsotra. All rights reserved.
             </p>
-            <p className="text-sm text-[#64748B]">
-              Planning & Design Engineer | M.Tech (Pursuing) | B.Tech
-            </p>
+            <p className="text-sm text-[#64748B]">Planning & Design Engineer</p>
           </div>
         </div>
       </footer>
@@ -1922,6 +2143,7 @@ function App() {
         <ExpertiseSection />
         <TechnicalWorkSection />
         <QuantitySurveyingSection />
+        <PlanningSection />
         <ProjectsSection />
         <TimelineSection />
         <ContactSection />

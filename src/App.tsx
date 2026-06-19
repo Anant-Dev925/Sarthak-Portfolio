@@ -12,7 +12,6 @@ import {
   Award,
   FileText,
   TrendingUp,
-  CheckCircle,
   GraduationCap,
   Briefcase,
   MapPin,
@@ -1321,7 +1320,7 @@ function PlanningSection() {
     },
   ];
 
-  const currentItem = planningItems[currentItemIndex];
+  // const currentItem = planningItems[currentItemIndex];
 
   const openItem = (index: number) => {
     setCurrentItemIndex(index);
